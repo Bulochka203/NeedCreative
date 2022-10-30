@@ -25,7 +25,7 @@
 + Использованные версии Django 3.2.14 и 4.1.2
 
 ```
-git clone 
+git clone https://github.com/Bulochka203/NeedCreative.git
 ```
 ```
 cd dance
