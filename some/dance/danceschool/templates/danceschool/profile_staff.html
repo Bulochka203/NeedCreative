@@ -1,0 +1,44 @@
+{% extends 'danceschool/layout.html' %}
+{% block title %}Главная страница{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block body %}staff bg-white{% endblock %}
+{% block content %}
+{% include 'danceschool/samples/header_staff.html'%}
+<main class="main">
+    <div class="upper py-2 mb-3">
+        <div class="prof-photo">
+            {% if not data.photo %}
+            <img src="/static/img/prof.png" alt="">
+            {% else %}
+            <img src="{{ data.photo.url }}" alt="" width="128" height="128">
+            {% endif %}
+        </div>
+        <div class="">
+                {% if data %}
+            <h2>{{ data.first_name }} {{ data.last_name }}</h2>
+                {% else %}
+            <h2>Name Surname</h2>
+                {% endif %}
+        </div>
+    </div>
+    <details class="spoiler text-dark" open>
+        <summary class="text-spoiler bg-white mb-3"><h3 class="gradient-text">Команды <img src="/static/img/settings.png" onclick="" height="25" width="25"></h3></summary>
+        <div class="commands">
+            <ul>
+            {% for achieve in commands %}
+                <li><a href="{{ achieve.get_absolute_url }}">{{ achieve.name }}</a></li>
+            {% empty %}
+                <li><a href="#">Command 1</a></li>
+                <br>
+                <li><a href="#">Command 2</a></li>
+                <br>
+                <li><a href="#">Command 3</a></li>
+                <br>
+                <li><a href="#">Command 4</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </details>
+</main>
+{% include 'danceschool/samples/footer_staff.html'%}
+{% endblock %}

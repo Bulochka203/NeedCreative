@@ -1,0 +1,12 @@
+{% extends 'danceschool/layout.html' %}
+{% block title %}Список команды{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block body %}{% endblock %}
+{% block content %}
+{% include 'danceschool/samples/header_other.html'%}
+<h1>{{ data.name }}</h1>
+
+
+<p>{{ data.members }}</p>
+
+{% endblock %}

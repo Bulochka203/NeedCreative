@@ -1,0 +1,154 @@
+{% extends 'danceschool/layout.html' %}
+{% block extrahead %}
+<script>function copytext(el){var $tmp = $("<input>");$("body").append($tmp);$tmp.val($(el).text()).select();document.execCommand("copy");$tmp.remove();}</script>
+{% endblock %}
+{% block title %}Профиль{% endblock %}
+{% block body %}profile{% endblock %}
+{% block content %}
+{% include 'danceschool/samples/header_profile.html'%}
+<main class="main">
+<div class="upper py-2 mb-3">
+    <div class="prof-photo">
+        {% if not data.photo %}
+        <img src="/static/img/prof.png" alt="">
+        {% else %}
+        <img src="{{ data.photo.url }}" alt="" width="128" height="128">
+        {% endif %}
+    </div>
+    <div class="information">
+        <ul>
+            {% if data %}
+            <li>{{ data.first_name }} {{ data.last_name }}</li>
+            <li>{{ data.rang }}</li>
+            {% else %}
+            <li>Name Surname</li>
+            <li>rang</li>
+            {% endif %}
+        </ul>
+        <h5>link</h5>
+        <div class="link" onclick="copytext('#link')">
+            <span class="line" id="link">some_text</span>
+            <div class="copy">
+            <i id="copy" class="fa-regular fa-copy" onclick="copytext('#link')"></i>
+            </div>
+        </div> 
+    </div>
+</div>
+<details class="spoiler" open>
+    <summary class="text-spoiler" >Достижения</summary>
+    <div class="achievments row mb-1">
+    {% for achieve in achievement %}
+        <div class="achievment col text-center mb-1">
+            <img src="/static/img/star.png" alt="" width="50" height="50">
+            <p class="achievement-text"> {{achieve.text}}</p>
+            <div class="row text-center mb-1 rounded ">
+                <p class="lead">+{{achieve.value}} <img src="/static/img/moneywhite.png" alt="" width="30" height="30"></p>
+            </div>
+        </div>
+    {% empty %}
+        <div class="achievment col text-center">
+            <i></i>
+            <p class="lead">Приведи друга</p>
+            <div>
+                <p class="lead">+2
+                <img src="/static/img/moneywhite.png" alt="dance-coin" width="30" height="30">
+            </p>
+            </div>
+        </div>
+        <div class="achievment col text-center">
+            <i></i>
+            <p class="lead">Выиграй конкурс</p>
+            <div><p class="lead">+5
+                <img src="/static/img/moneywhite.png" alt="dance-coin" width="30" height="30"></p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="another-achievements">
+        <a href="{% url 'danceschool:achievement' %}">Перейти ко всем достижениям</a>
+    </div>
+</details>
+<div class="tree">
+    <div class="row"><h2 class="">Денежное дерево</h2></div>
+    <div class="energy row">
+        <svg class="col"width="20" height="20" viewBox="0 0 362 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M287.984 2.19001C291.204 4.00554 293.697 6.82943 295.053 10.2004C296.41 13.5713 296.551 17.29 295.454 20.749L236.187 208.002H345.539C348.753 208.001 351.897 208.915 354.582 210.631C357.268 212.347 359.378 214.79 360.652 217.659C361.926 220.528 362.308 223.697 361.751 226.774C361.194 229.852 359.722 232.703 357.518 234.977L94.2548 506.961C91.7075 509.595 88.3178 511.312 84.6382 511.833C80.9587 512.354 77.2062 511.647 73.9924 509.829C70.7786 508.01 68.2931 505.187 66.9409 501.819C65.5887 498.451 65.4497 494.737 66.5463 491.282L125.813 303.997H16.4605C13.2469 303.998 10.1032 303.084 7.41762 301.368C4.732 299.652 2.62199 297.209 1.34806 294.34C0.0741277 291.471 -0.30795 288.303 0.248986 285.225C0.805923 282.148 2.27749 279.296 4.48204 277.022L267.745 5.03785C270.289 2.40757 273.674 0.691492 277.348 0.16864C281.023 -0.354212 284.771 0.346912 287.984 2.15801V2.19001ZM54.535 271.999H148.092C150.667 271.998 153.206 272.585 155.505 273.713C157.804 274.84 159.799 276.477 161.329 278.491C162.859 280.505 163.882 282.84 164.315 285.308C164.748 287.776 164.579 290.308 163.822 292.701L118.804 434.869L307.432 240H213.908C211.333 240.001 208.794 239.414 206.495 238.286C204.196 237.159 202.201 235.522 200.671 233.508C199.141 231.494 198.118 229.16 197.685 226.691C197.252 224.223 197.421 221.691 198.178 219.298L243.196 77.1297L54.535 271.999Z" fill="url(#paint0_linear_18_183)"/>
+        <path d="M54.535 271.999H148.092C150.667 271.998 153.206 272.585 155.505 273.713C157.804 274.84 159.799 276.477 161.329 278.491C162.859 280.505 163.882 282.84 164.315 285.308C164.748 287.776 164.579 290.308 163.822 292.701L118.804 434.869L307.432 240H213.908C211.333 240.001 208.794 239.414 206.495 238.286C204.196 237.159 202.201 235.522 200.671 233.508C199.141 231.494 198.118 229.16 197.685 226.691C197.252 224.223 197.421 221.691 198.178 219.298L243.196 77.1297L54.535 271.999Z" fill="url(#paint1_linear_18_183)"/>
+        <defs>
+        <linearGradient id="paint0_linear_18_183" x1="181" y1="0" x2="181" y2="512" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#16C1DB"/>
+        <stop offset="0.9999" stop-color="#A816DB"/>
+        <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear_18_183" x1="181" y1="0" x2="181" y2="512" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#16C1DB"/>
+        <stop offset="0.9999" stop-color="#A816DB"/>
+        <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+        </linearGradient>
+        </defs>
+        </svg>
+        <p class="gradient-text col" id="energy">25</p></div>
+    <div class="timer" id="timer"></div>
+    <div id="stage"><img id="tree" src="/static/img/icons/fill.svg"></div>
+    <div class="toolbar-addon">
+    <div class="unblock-tree">
+        <div></div>
+    </div>
+    <div class="in-btn">
+        <input type="button" id="btn-start" value="20">
+    </div>
+    <div class="block-tree"><div></div></div>
+    <div class="block-tree"><div></div></div>
+    </div>
+</div>
+</main>
+{% include 'danceschool/samples/footer_mobile.html'%}
+    <script>
+    let btn_start = document.getElementById('btn-start');
+    let balance = document.getElementById('balance');
+    let timer =  document.getElementById('timer');
+    let tree = document.getElementById('tree');
+    let ener = document.getElementById('energy');
+    var bal = balance.innerHTML;
+    var energy = ener.innerHTML;
+    var energy_need = btn_start.value;
+    var stage0 = "/static/img/icons/fill.svg";
+    var stage1 = "/static/img/icons/tree1s.svg";
+    var stage2 = "/static/img/icons/tree2s.svg";
+    var stage3 = "/static/img/icons/tree3s.svg";
+    var timeMinut;
+        btn_start.addEventListener('click', function() {
+            if (energy>energy_need){
+                var re = energy-energy_need;
+                ener.innerHTML = re;}
+        timeMinut = 60;
+        btn_start.remove();
+        });
+        time = setInterval(function () { 
+        seconds = timeMinut%60 // Получаем секунды
+        minutes = timeMinut/60%60 // Получаем минуты
+        hour = timeMinut/60/60%60 // Получаем часы
+        if (!timeMinut) {
+            timer.innerHTML = "";
+        } else {
+            if (timeMinut <= 0) { clearInterval(time); timer.innerHTML = "Пожинай плоды"; clearInterval(timer);} else {
+            switch(timeMinut){
+                case 60:
+                    $(tree).attr("src", $(tree).attr("src") ===stage0 ? stage1 : stage1);
+                    break;
+                case 30:
+                    $(tree).attr("src", $(tree).attr("src") ===stage1 ? stage2 : stage2);
+                    break;
+                case 1:
+                    $(tree).attr("src", $(tree).attr("src") ===stage2 ? stage3 : stage3);
+                    break;
+            }
+            let strTimer = `${Math.trunc(hour)}:${Math.trunc(minutes)}:${seconds}`;
+            // Выводим строку в блок для показа таймера
+            timer.innerHTML = strTimer;
+        }
+    }
+        --timeMinut;
+        }, 1000);
+    </script>
+{% endblock %}
