@@ -1,0 +1,31 @@
+{% extends 'danceschool/layout.html' %}
+{% load static %}
+{% block extrahead %} <link rel="stylesheet" href="/static/css/main.css"> {% endblock %}
+{% block title %}Список команды{% endblock %}
+{% block content %}
+<header class="mb-3">
+    <div class="name-tool">
+    <h1 class="gradient-text">"{{ data.name }}" 
+    </h1>
+    <img src="/static/img/settings.png" id="tool-staff" height="25" width="25">
+    </div>
+    <a onclick="javascript:history.back(); return false;">
+        <img height="30" width="30" src="/static/img/return.png"></a>
+</header>
+<main>
+<div class="members">
+    <div class="title-up"><h1 class="gradient-text mb-3">Участники</h1></div>
+    <ul>{% for member in members %}
+        <li>
+            <img src="/media/{{ member.photo }}" alt="" width="80" height="80" class="min-photo"> 
+            {{ member.first_name }} {{ member.last_name }} 
+            <div class="member-tools"> 
+                <div class="add-energy col">+1<img src="/static/img/settings.png" alt="" width="40" height="40"> </div>
+                <div class="add-coin col">+1<img src="/static/img/settings.png" alt="" width="40" height="40"></div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</main>
+{% endblock %}
