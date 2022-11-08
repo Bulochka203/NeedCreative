@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/static/manifest.json">
+    {% block extrahead %}{% endblock %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/colors.css">
+    <script>$(function(){$('.navigate a').each(function(){var location = window.location.href;var link = this.href;if(location == link){$(this).addClass('active');}});});</script>
+    <script>
+        !function(e){"function"!=typeof e.matches&&(e.matches=e.msMatchesSelector||e.mozMatchesSelector||e.webkitMatchesSelector||function(e){for(var t=this,o=(t.document||t.ownerDocument).querySelectorAll(e),n=0;o[n]&&o[n]!==t;)++n;return Boolean(o[n])}),"function"!=typeof e.closest&&(e.closest=function(e){for(var t=this;t&&1===t.nodeType;){if(t.matches(e))return t;t=t.parentNode}return null})}(window.Element.prototype);
+        document.addEventListener('DOMContentLoaded', function() {
+           /* Записываем в переменные массив элементов-кнопок и подложку.
+              Подложке зададим id, чтобы не влиять на другие элементы с классом overlay*/
+           var modalButtons = document.querySelectorAll('.js-open-modal'),
+               overlay      = document.querySelector('.js-overlay-modal'),
+               closeButtons = document.querySelectorAll('.js-modal-close');
+           /* Перебираем массив кнопок */
+           modalButtons.forEach(function(item){
+              /* Назначаем каждой кнопке обработчик клика */
+              item.addEventListener('click', function(e) {
+                 /* Предотвращаем стандартное действие элемента. Так как кнопку разные
+                    люди могут сделать по-разному. Кто-то сделает ссылку, кто-то кнопку.
+                    Нужно подстраховаться. */
+                 e.preventDefault();
+                 /* При каждом клике на кнопку мы будем забирать содержимое атрибута data-modal
+                    и будем искать модальное окно с таким же атрибутом. */
+                 var modalId = this.getAttribute('data-modal'),
+                     modalElem = document.querySelector('.modal[data-modal="' + modalId + '"]');
+                 /* После того как нашли нужное модальное окно, добавим классы
+                    подложке и окну чтобы показать их. */
+                 modalElem.classList.add('active');
+                 overlay.classList.add('active');
+              }); // end click
+           }); // end foreach
+           closeButtons.forEach(function(item){
+              item.addEventListener('click', function(e) {
+                 var parentModal = this.closest('.modal');
+        
+                 parentModal.classList.remove('active');
+                 overlay.classList.remove('active');
+              });
+           }); // end foreach
+            document.body.addEventListener('keyup', function (e) {
+                var key = e.keyCode;
+        
+                if (key == 27) {
+        
+                    document.querySelector('.modal.active').classList.remove('active');
+                    document.querySelector('.overlay').classList.remove('active');
+                };
+            }, false);
+            overlay.addEventListener('click', function() {
+                document.querySelector('.modal.active').classList.remove('active');
+                this.classList.remove('active');
+            });
+        });
+        </script>
+    {% block script-js %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="{% block body %}{% endblock %}">
+{% block content %}
+{% endblock %}
+</body>
+</html>

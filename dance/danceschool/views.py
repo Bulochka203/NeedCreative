@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.db.models import F
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from dance.settings import *
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,9 +8,10 @@ from calendarapp.models import Event
 from django.views.generic import DetailView, ListView
 from .models import *
 
+
 def redirect_view(request):
     # переход на домшнюю страницу
-    return redirect("/profile")
+    return redirect("/mobile")
 
 
 def statistic(request):
@@ -59,8 +62,8 @@ class profile(LoginRequiredMixin, View):
     login_url = LOGIN_URL
     template_name = "danceschool/profile.html"
 
-    def get(self, request, *args, **kwargs):
-        data = Profile.objects.get(id=1)
+    def get(self, request, id, *args, **kwargs):
+        data = Profile.objects.get(id=id)
         achievement = Achievements.objects.all()
         context = {
             "data": data,
@@ -73,8 +76,8 @@ class profile_staff(LoginRequiredMixin, View):
     login_url = LOGIN_URL
     template_name = "danceschool/profile_staff.html"
 
-    def get(self, request, *args, **kwargs):
-        data = Profile.objects.get(id=1)
+    def get(self, request, id, *args, **kwargs):
+        data = Profile.objects.get(id=id)
         spisok = Profile.objects.all()
         commands = Commands.objects.all()
         context = {
@@ -87,4 +90,15 @@ class profile_staff(LoginRequiredMixin, View):
 
 def command_detail(request, id):
     data = Commands.objects.get(id=id)
-    return render(request, "danceschool/command_detail.html", {"data": data})
+    members = data.get_users
+    context = {
+        "data": data,
+        "members": members
+    }
+    return render(request, "danceschool/command_detail.html", context)
+
+
+@csrf_exempt
+def IncreaseCounter(request, value):
+    _reponse = Profile.object.balance.update(total=F('total') + int(value))
+    return HttpResponse('the counter has been increased')

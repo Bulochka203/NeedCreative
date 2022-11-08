@@ -1,0 +1,64 @@
+{% extends 'danceschool/layout.html' %}
+{% block title %}Главная страница{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block body %}staff bg-white{% endblock %}
+{% block content %}
+{% include 'danceschool/samples/header_staff.html'%}
+<div class="modal" data-modal="1">
+    <!--   Svg иконка для закрытия окна  -->
+    <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
+    <p class="modal__title">Ваш qr-code</p>
+    <img class="modal__qr" src="/static/img/icons/qr-code.svg">
+ </div>
+ <div class="modal" data-modal="2">
+    <!--   Svg иконка для закрытия окна  -->
+    <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
+    <p class="modal__title">Отсканируйте qr-code</p>
+    <p class="scanner">Здесь будет сканер</p>
+ </div>
+ <div class="modal" data-modal="3">
+    <!--   Svg иконка для закрытия окна  -->
+    <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
+    <h3 class="modal__title">Начислить</h3>
+    <p class="modal__title"></p>
+
+ </div>
+<div class="overlay js-overlay-modal"></div>
+<main class="main">
+    <div class="upper py-2 mb-3">
+        <div class="prof-photo">
+            {% if not data.photo %}
+            <img src="/static/img/prof.png" alt="">
+            {% else %}
+            <img src="{{ data.photo.url }}" alt="" width="128" height="128">
+            {% endif %}
+        </div>
+        <div class="">
+                {% if data %}
+            <h2>{{ data.first_name }} {{ data.last_name }}</h2>
+                {% else %}
+            <h2>Name Surname</h2>
+                {% endif %}
+        </div>
+    </div>
+    <details class="spoiler text-dark" open>
+        <summary class="text-spoiler mb-3"><h3 class="gradient-text">Команды <img src="/static/img/settings.png" id="tool-staff" height="25" width="25"></h3></summary>
+        <div class="commands">
+            <ul>
+            {% for command in commands %}
+                <li><a class="" href="{{ command.get_absolute_url }}">{{ command.name }}</a></li>
+            {% empty %}
+                <li>Комманды не найдены</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </details>
+</main>
+<script>
+    let staff = document.getElementById("tool-staff")
+    staff.addEventListener('click', function(){
+        alert("Привет")
+    })
+</script>
+{% include 'danceschool/samples/footer_staff.html'%}
+{% endblock %}
