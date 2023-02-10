@@ -1,5 +1,4 @@
 import time
-from django.shortcuts import render
 
 
 def si(get_response):

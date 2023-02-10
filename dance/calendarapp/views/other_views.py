@@ -70,13 +70,13 @@ def create_event(request):
             end_time=end_time,
         )
         return HttpResponseRedirect(reverse("calendarapp:calendar"))
-    return render(request, "event.html", {"form": form})
+    return render(request, "events_list.html", {"form": form})
 
 
 class EventEdit(generic.UpdateView):
     model = Event
     fields = ["title", "description", "start_time", "end_time"]
-    template_name = "event.html"
+    template_name = "events_list.html"
 
 
 @login_required(login_url="signup")

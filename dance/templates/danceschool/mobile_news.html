@@ -3,6 +3,22 @@
 {% block body %}news{% endblock %}
 {% block content %}
 {% include 'danceschool/samples/header_other.html'%}
-<main class="main_news"><h1>Раздел в разработке</h1></main>
+<main class="main_news">
+    <div class="post-list">
+    {% for post in posts %}
+    <div class="post-el">
+        <h1 class="post-title">{{ post.name }}</h1>
+        {% if post.photo %}
+        <img class="post-image" src="{{ post.photo.url }}">
+        {% endif %}
+        <div class="another-achievements">
+        <a href="{{ post.get_absolute_url }}">Перейти к новости</a>
+        </div>
+    </div>
+    {% empty %}
+    <h1>Постов нету</h1>
+    {% endfor %}
+    </div>
+</main>
 {% include 'danceschool/samples/footer_mobile.html'%}
 {% endblock %}

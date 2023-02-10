@@ -14,6 +14,19 @@
 .news{
   background: linear-gradient(180deg, #A816DB, #16C1DB);
 }
+.calender{
+  background-color: #fff;
+}
+.calender header{
+  color: #ffffff;
+  background: linear-gradient(180deg, #A816DB, #16C1DB);
+}
+.calender .dance-navbar{
+  background: linear-gradient(180deg, #A816DB, #16C1DB);
+}
+.calender .dance-navbar .dance-nav-toggle{
+  background: transparent;
+}
 .news .dance-navbar{
   background-color: #A816DB;
 }
@@ -40,7 +53,7 @@
   box-shadow: 8px 15px 8px 25px rgba(0, 0, 0, 0.3);
 }    
 .navbar ul li a:hover{
-  color: linear-gradient(180deg, #16C1DB, #A816DB);;
+  color: linear-gradient(180deg, #16C1DB, #A816DB);
 }
 .spoiler{
   background: linear-gradient(180deg, #16C1DB, #A816DB);
@@ -118,4 +131,7 @@
 }
 .commands > ul > li > a {
   color: #A816DB;
+}
+.post-title{
+  color: #fff;
 }

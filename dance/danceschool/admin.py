@@ -8,7 +8,6 @@ class ProflieAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile, ProflieAdmin)
-admin.site.register(Post)
 admin.site.register(Commands)
 admin.site.register(Achievements)
 admin.site.register(Tree)

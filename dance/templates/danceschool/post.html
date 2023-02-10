@@ -1,0 +1,9 @@
+{% extends 'danceschool/layout.html' %}
+{% block title %}{{ post.name }}{% endblock %}
+{% block body %}post{% endblock %}
+{% block content %}
+    <p>{{ data.body }}</p>
+    {% if data.photo %}
+        <img src="{{ data.photo.url }}" alt="" >
+    {% endif %}
+{% endblock %}

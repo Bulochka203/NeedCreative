@@ -1,0 +1,18 @@
+<header class="pb-2 mb-3">
+    <input type="checkbox" id="nav-toggle" class="dance-checkbox" hidden>
+      <nav class="dance-navbar">
+        <label for="nav-toggle" class="dance-nav-toggle" onclick></label>
+        <div class="dance-logo">
+          <img id="logo" src="" alt="">
+        </div>
+        <ul>
+          <li><a href="{% url 'danceschool:statistic' %}">Статистика рангов</a>
+          <li><a href="#">Перейти в режим родитель</a>
+          <li><a href="{% url 'danceschool:about'%}">О проекте</a>
+          <li><a href="#">Достижения</a>
+          <li><a href="#">Настройки</a>
+          <li><a href="{% url 'accounts:signout' %}">Выйти</a>
+       </ul>
+      </nav>
+      <h2>Календарь</h2>
+</header>

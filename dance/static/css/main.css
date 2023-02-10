@@ -68,19 +68,36 @@ main{
     margin-left: 0;
     border-radius: 15px;
 }
+.member-tools > div > a {
+    text-decoration: none;
+}
 .member-tools > .add-energy{
-    background-color: rgba(0, 255, 0, 0.5);
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
     border-radius: inherit;
     margin-bottom: 3px;
 }
 .member-tools > .add-coin{
-    background-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
     border-radius: inherit;
 }
 .member-tools .added-energy{
     background-color: rgba(0, 0, 255, 0.5);
 }
+.member-base{
+    margin: 0;
+}
+.input-and-btn{
+    padding: 10px;
+}
+.input-and-btn .input{
+    margin: 5px;
+}
+.input-and-btn .btn{
+    
+}
+.add-balance{
 
+}
 .min-photo{
     border-radius: 5px;
 }

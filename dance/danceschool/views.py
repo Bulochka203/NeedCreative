@@ -11,7 +11,7 @@ from .models import *
 
 def redirect_view(request):
     # переход на домшнюю страницу
-    return redirect("/mobile")
+    return redirect("account/signin")
 
 
 def statistic(request):
@@ -24,10 +24,6 @@ def achievements(request):
 
 def mobile(request):
     return render(request, 'danceschool/mobile.html')
-
-
-def news(request):
-    return render(request, 'danceschool/mobile_news.html')
 
 
 def messenger(request):
@@ -46,7 +42,7 @@ class DashboardView(LoginRequiredMixin, View):
     login_url = LOGIN_URL
     template_name = "calendarapp/dashboard.html"
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, id, **kwargs):
         events = Event.objects.get_all_events(user=request.user)
         running_events = Event.objects.get_running_events(user=request.user)
         latest_events = Event.objects.filter(user=request.user).order_by("-id")[:10]
